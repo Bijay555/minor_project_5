@@ -1,0 +1,2 @@
+image_dataset_path: 'project5-dataset/image_dataset/'
+dataset_path: 'project5-dataset/img_sim_dataset.csv'
