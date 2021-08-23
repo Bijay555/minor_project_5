@@ -17,25 +17,6 @@ class VGG16_model():
         self.dataset = dataset_path
     
 
-    def load_image(self):
-        '''function: to path the input images directory and create list of image name
-
-                parameter:
-                None
-
-                Return:
-                list of images
-        '''
-        images=[]
-        directory = Path(self.image_path)
-        file_path = os.listdir(directory)
-        for image in file_path:
-            images.append(image)
-        images.sort()
-        #if condition returns False, AssertionError is raised:
-        return images
-    
-
     def preprocess_image(image_name):
         '''function: to convert input images into numpy array and preprocess it
 
@@ -67,7 +48,7 @@ class VGG16_model():
         features=[]
         #load a previously-trained neural network, that of VGG16, which comes with Keras.
         model = VGG16(weights='imagenet', include_top=True)
-        #What we do is we copy the model, but remove the last layer (the classification layer),fc2 dense (1,1,4096)
+        # copy the model, but remove the last layer (the classification layer),fc2 dense (1,1,4096)
         feat_extractor = Model(inputs=model.input, outputs=model.get_layer("fc2").output)
         # use VGG to extract features
         for image_name in images:
